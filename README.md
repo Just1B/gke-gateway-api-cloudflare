@@ -22,3 +22,22 @@ Most of the configuration is available in the `terraform` directory.
 - An api token setup on Cloudflare
 
 ![index](./images/cloudflare_user_token.png)
+
+### Real service Troubleshooting
+
+Our example quite simple but for more real world scenarios, you may encounter the error below :
+
+    no healthy upstream
+
+The error is due to the load balancer health check not able to reach the service.
+
+To fix this, you need to create a `HealthCheckPolicy` and attach it to the service.
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_health_check
+
+### Useful links
+
+- https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api
+- https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities
+- https://cloud.google.com/kubernetes-engine/docs/how-to/secure-gateway#secure-using-secret
+- https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-gateways#external-gateway

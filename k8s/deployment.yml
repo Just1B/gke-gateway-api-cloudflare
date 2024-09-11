@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: echo-server
+  labels:
+    app: echo-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      containers:
+        - name: echo-server
+          image: hashicorp/http-echo
+          args:
+            - "-text=Gateway is working"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: service-echo-server
+  namespace: default
+spec:
+  selector:
+    app: echo-server
+  ports:
+    - port: 8080
+      targetPort: 5678

@@ -1,0 +1,17 @@
+kind: Gateway
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: global-gateway
+  namespace: default
+  annotations:
+    networking.gke.io/certmap: demo-cert-map
+spec:
+  gatewayClassName: gke-l7-gxlb
+  listeners:
+  - name: http
+    protocol: HTTP
+    port: 80
+
+  - name: https
+    protocol: HTTPS
+    port: 443
